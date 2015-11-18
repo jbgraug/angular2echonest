@@ -124,6 +124,6 @@ export class ArtistRender {
 	}
 
 	removeFavourite(data) {
-		this.favStore.deleteFavourite(data.name, data.id);
+		this.favStore.deleteFavourite(data.name);
 	}
 }

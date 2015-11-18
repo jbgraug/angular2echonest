@@ -6,29 +6,31 @@ let initialArray: any[] = [];
 @Injectable()
 export class FavStore {
 
-	favourites: Rx.Observable<any[]>;
-	updates: Rx.Subject<any[]> = new Rx.Subject<any>();
-	addFav: Rx.Subject<any> = new Rx.Subject<any>();
-	deleteFav: Rx.Subject<any> = new Rx.Subject<any>();
+	favourites: Rx.Observable<Object[]>;
+	updates: Rx.Subject<Object> = new Rx.Subject<Object>();
+	addFav: Rx.Subject<Object> = new Rx.Subject<Object>();
+	deleteFav: Rx.Subject<Object> = new Rx.Subject<Object>();
 
 
 	constructor() {
 		this.favourites = this.updates
-							.scan((artists, operation) => {
-								return typeof operation === 'object' ? operation.concat(artists) : operation(artists);
+							.scan((artists, operation: Function) => {
+								return operation(artists);
 							}, initialArray);
 
 		this.addFav
 			.map(function(artist) {
-				return artist;
+				return (artists) => {
+					return artists.concat(artist);
+				}
 			})
 			.subscribe(this.updates);
 
 		this.deleteFav
 			.map(function(artistToDelete) {
-				return function(artists) {
-					return artists.filter((artistOfList) => {
-						return artistOfList.name !== artistToDelete.name;
+				return function(artistsList) {
+					return artistsList.filter((artistOfList) => {
+						return artistOfList.name !== artistToDelete;
 					})
 				}
 			})
@@ -37,13 +39,12 @@ export class FavStore {
 	}
 
 	addFavourite(artistName, artistId) {
-		let artist = [{ name: artistName, id: artistId, isNew: true }];
+		let artist = { name: artistName, id: artistId, isNew: true };
 		this.addFav.next(artist)
 	}
 
-	deleteFavourite(artistName, artistId) {
-		let artist = { name: artistName, id: artistId, isNew: true };
-		this.deleteFav.next(artist)
+	deleteFavourite(artistName) {
+		this.deleteFav.next(artistName)
 	}
 
 	getFavourites() {

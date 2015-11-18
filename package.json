@@ -33,7 +33,7 @@
   "author": "Loïc Marcos <marcosloic@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@reactivex/rxjs": "5.0.0-alpha.4",
+    "@reactivex/rxjs": "5.0.0-alpha.10",
     "angular2": "2.0.0-alpha.46",
     "reflect-metadata": "0.1.2",
     "rimraf": "2.4.3",
