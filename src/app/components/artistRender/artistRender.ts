@@ -7,7 +7,7 @@ import { FavStore } from '../../stores/favStore';
 })
 
 @View({
-	directives: [NgIf, NgFor, ArtistReviewRender, NgClass],
+		directives: [NgIf, NgFor, ArtistReviewRender, NgClass, NgIf],
 	template: `
 	<div *ng-if="data" class="cyan">
 		<div class="container">
@@ -42,8 +42,8 @@ import { FavStore } from '../../stores/favStore';
 					</div>
 					<div class="col s2">
 						<h6 class="white-text">Favourite</h6>
-							<i class="material-icons" [ng-class]="{active: isFavourite, inactive: !isFavourite}" (click)="toggleFavourite(data, !isFavourite)">star_rate</i>
-							<i class="material-icons" (click)="removeFavourite(data)">star_rate</i>
+							<i *ng-if="!isFavourite" class="material-icons white-text" [ng-class]="{active: isFavourite, inactive: !isFavourite}" (click)="addFavourite(data, !isFavourite)">star_rate</i>
+							<i *ng-if="isFavourite" class="material-icons yellow-text" (click)="removeFavourite(data, !isFavourite)">star_rate</i>
 						</div>
 					</div>
 
@@ -91,15 +91,7 @@ import { FavStore } from '../../stores/favStore';
 			</div>
 		</div>
 
-	`,
-	styles: [`
-		.active {
-			color: yellow
-		}
-		.inactive {
-			color:white
-		}
-	`]
+	`
 })
 
 export class ArtistRender {
@@ -118,12 +110,13 @@ export class ArtistRender {
 	    this[value] = event.target['checked'];
 	}
 
-	toggleFavourite(artist, newState) {
+	addFavourite(artist, newState) {
 		this.favStore.addFavourite(artist.name, artist.id);
 		this.isFavourite = newState;
 	}
 
-	removeFavourite(data) {
+	removeFavourite(data, newState) {
 		this.favStore.deleteFavourite(data.name);
+		this.isFavourite = newState;
 	}
 }

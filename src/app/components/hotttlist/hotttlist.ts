@@ -11,7 +11,7 @@ import { Echonest } from '../../services/Echonest';
 	template: `
 		<div class="container">
 			<div class="row">
-				<hotttlist-element class="col s12" [artists]="artists"></hotttlist-element>
+				<hotttlist-element class="col s12" [artists]="artists" title="Echonest\'s hotttest artists"></hotttlist-element>
 			</div>
 		</div>
 	`
