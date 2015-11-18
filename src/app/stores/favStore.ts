@@ -1,57 +1,52 @@
 import { Injectable } from 'angular2/angular2';
 import * as Rx from '@reactivex/rxjs';
 
-let initialArray = [];
+let initialArray: any[] = [];
 
 @Injectable()
 export class FavStore {
 
-	favourites: Rx.Observable<any[]> = new Rx.Observable;
-	updates: Rx.Subject<any[]> = new Rx.Subject();
-	// favourites: Rx.Observable<any[]>;
-	// addFav: Rx.Subject<any> = new Rx.Subject<any>();
-	// deleteFav: Rx.Subject<any> = new Rx.Subject<any>();
-	// updates: Rx.Subject<any> = new Rx.Subject<any>();
+	favourites: Rx.Observable<any[]>;
+	updates: Rx.Subject<any[]> = new Rx.Subject<any>();
+	addFav: Rx.Subject<any> = new Rx.Subject<any>();
+	deleteFav: Rx.Subject<any> = new Rx.Subject<any>();
 
 
 	constructor() {
 		this.favourites = this.updates
-						.scan((x, y) => {
-							  return y.concat(x) ;
-						  }, initialArray)
-						.shareReplay(1, Number.POSITIVE_INFINITY)
-		// this.favourites = this.updates
-		// 	.scan(function(accumulator, favourite) {
-		// 		return favourite(accumulator);
-		// 	}, initialArray)
+							.scan((artists, operation) => {
+								return typeof operation === 'object' ? operation.concat(artists) : operation(artists);
+							}, initialArray);
 
-		// this.addFav
-		// 	.map(function(artist) {
-		// 		return (favourites) => {
-		// 			return favourites.concat(artist);
-		// 		}
-		// 	})
-		// 	.subscribe(this.updates);
+		this.addFav
+			.map(function(artist) {
+				return artist;
+			})
+			.subscribe(this.updates);
+
+		this.deleteFav
+			.map(function(artistToDelete) {
+				return function(artists) {
+					return artists.filter((artistOfList) => {
+						return artistOfList.name !== artistToDelete.name;
+					})
+				}
+			})
+			.subscribe(this.updates);
 
 	}
 
-	addFavourite(artist) {
-		this.updates.next([artist.name])
+	addFavourite(artistName, artistId) {
+		let artist = [{ name: artistName, id: artistId, isNew: true }];
+		this.addFav.next(artist)
+	}
+
+	deleteFavourite(artistName, artistId) {
+		let artist = { name: artistName, id: artistId, isNew: true };
+		this.deleteFav.next(artist)
 	}
 
 	getFavourites() {
 		return this.favourites;
 	}
-
-	// addFavourite(artist) {
-	// 	this.addFav.next(artist);
-	// }
-
-	// getFavourites() {
-	// 	return this.favourites;
-	// }
-
-
-
-
 }

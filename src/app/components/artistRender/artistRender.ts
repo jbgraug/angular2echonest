@@ -43,6 +43,7 @@ import { FavStore } from '../../stores/favStore';
 					<div class="col s2">
 						<h6 class="white-text">Favourite</h6>
 							<i class="material-icons" [ng-class]="{active: isFavourite, inactive: !isFavourite}" (click)="toggleFavourite(data, !isFavourite)">star_rate</i>
+							<i class="material-icons" (click)="removeFavourite(data)">star_rate</i>
 						</div>
 					</div>
 
@@ -109,7 +110,7 @@ export class ArtistRender {
 
 	constructor(favStore: FavStore) {
 		this.favStore = favStore;
-		this.favStore.getFavourites().subscribe(x => console.log(x));
+		this.favStore.favourites.subscribe(x => console.log(x));
 	}
 
 
@@ -118,7 +119,11 @@ export class ArtistRender {
 	}
 
 	toggleFavourite(artist, newState) {
-		this.favStore.addFavourite(artist);
+		this.favStore.addFavourite(artist.name, artist.id);
 		this.isFavourite = newState;
+	}
+
+	removeFavourite(data) {
+		this.favStore.deleteFavourite(data.name, data.id);
 	}
 }
