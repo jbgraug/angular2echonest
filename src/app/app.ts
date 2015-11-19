@@ -15,6 +15,7 @@ import {Hotttlist} from './components/hotttlist/hotttlist';
 import {Header} from './components/header/header';
 import {Artist} from './components/artist/artist';
 import {Search} from './components/search/search';
+import {Favourites} from './components/favourites/favourites';
 
 
 
@@ -38,6 +39,7 @@ import {Search} from './components/search/search';
 	{ path: '/home',				as: 'Home',				component: Hotttlist},
 	{ path: '/artist/:name',		as: 'Artist',			component: Artist},
 	{ path: '/search', 				as: 'Search', 			component: Search },
+	{ path: '/favourites', 			as: 'Favourites', 		component: Favourites },
 
 ])
 

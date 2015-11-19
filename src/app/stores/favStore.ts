@@ -1,41 +1,42 @@
 import { Injectable } from 'angular2/angular2';
 import * as Rx from '@reactivex/rxjs';
 
-let initialArray: any[] = [];
+let initialState: any[] = [];
 
 @Injectable()
 export class FavStore {
 
-	favourites: Rx.Observable<Object[]>;
-	updates: Rx.Subject<Object> = new Rx.Subject<Object>();
-	addFav: Rx.Subject<Object> = new Rx.Subject<Object>();
-	deleteFav: Rx.Subject<Object> = new Rx.Subject<Object>();
+	favourites: Rx.ReplaySubject<any[]> = new Rx.ReplaySubject<any>(-1);
+	updates: Rx.Subject<any> = new Rx.Subject<any>();
+	addFav: Rx.Subject<any> = new Rx.Subject<any>();
+	deleteFav: Rx.Subject<any> = new Rx.Subject<any>();
 
 
 	constructor() {
-		this.favourites = this.updates
-							.scan((artists, operation: Function) => {
-								return operation(artists);
-							}, initialArray);
+		this.updates
+				.scan((accumulator: Object[], operation: Function) => {
+					return operation(accumulator);
+					}, initialState)
+				.subscribe(this.favourites);
 
 		this.addFav
 			.map(function(artist) {
-				return (artists) => {
-					return artists.concat(artist);
+				console.log(artist);
+				return (state) => {
+					return state.concat(artist);
 				}
 			})
 			.subscribe(this.updates);
 
 		this.deleteFav
-			.map(function(artistToDelete) {
-				return function(artistsList) {
-					return artistsList.filter((artistOfList) => {
-						return artistOfList.name !== artistToDelete;
+			.map(function(artist) {
+				return function(state) {
+					return state.filter((artists) => {
+						return artists.name !== artist;
 					})
 				}
 			})
 			.subscribe(this.updates);
-
 	}
 
 	addFavourite(artistName, artistId) {
@@ -47,7 +48,4 @@ export class FavStore {
 		this.deleteFav.next(artistName)
 	}
 
-	getFavourites() {
-		return this.favourites;
-	}
 }

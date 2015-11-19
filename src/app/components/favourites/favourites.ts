@@ -1,35 +1,40 @@
-import { Component, View } from 'angular2/angular2';
-import { HotttlistElementRender } from '../hotttlistElementRender/hotttlistElementRender';
+import { Component, View, NgFor } from 'angular2/angular2';
+import { FavouritesElementRender } from '../favouritesElementRender/favouritesElementRender';
 import { FavStore } from '../../stores/favStore';
+import * as Rx from "@reactivex/rxjs";
 
-Component({
-	selector: 'favourite-list',
+@Component({
+	selector: 'favourites'
 })
 
-View({
-	directives: [FavouritesList],
+@View({
+	directives: [FavouritesElementRender, NgFor],
 	template: `
-	<div class="container">
-		<div class="row">
-			<hotttlist-element class="col s12" [artists]="artists" title="our favourite artists"></hotttlist-element>
+		<div class="container">
+			<div class="row">
+				<favourites-element class="col s12" [artists]=favouriteArtists title="My favourites" />
+				<li *ng-for="#artist of favouriteArtists">{{newFavourites}}</li>
+			</div>
 		</div>
-	</div>
+
 	`
 })
 
-export class Hotttlist {
-	artists: Object;
-	favStore: FavStore;
-	onstructor(favStore : FavStore) {
+export class Favourites {
+	favouriteArtists: any[];
+	newFavourites: any;
+
+	constructor(public favStore: FavStore) {
 		this.favStore = favStore;
 	}
-	getArtists(data) {
-		this.artists = data;
+
+	setArtists(data) {
+		this.favouriteArtists = data;
 	}
+
 	onInit() {
-		his.echonest.topHot()
-		.subscribe(data => this.setArtists(data.response.artists))
+		this.favStore.favourites.subscribe(data => this.newFavourites = data[0].name);
+		this.favStore.favourites.subscribe(data => this.favouriteArtists = data);
 	}
-	
 
 }

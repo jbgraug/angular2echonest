@@ -14,7 +14,7 @@ import { FavStore } from '../../stores/favStore';
 			<div class="nav-wrapper container">
 				<a href="#" class="brand-logo">{{title}}</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="">My favourites <span *ng-if="newFavourites" class="new badge pink">{{newFavourites}}</span></a></li>
+					<li><a [router-link]="['/Favourites']">My favourites <span *ng-if="newFavourites" class="new badge pink">{{newFavourites}}</span></a></li>
 					<li><a [router-link]="['/Search']">Search an artist</a></li>
 				</ul>
 			</div>
@@ -34,7 +34,8 @@ export class Header {
 	}
 
 	onInit() {
-        this.favStore.getFavourites().subscribe(data => this.newFavourites = data.length);
+        this.favStore.favourites.subscribe(data => this.newFavourites = data.length);
+		console.log(this.favStore.favourites);
 	}
 
 
