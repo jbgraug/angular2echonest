@@ -7,7 +7,9 @@ import { FavStore } from '../../stores/favStore';
 })
 
 @View({
-		directives: [NgIf, NgFor, ArtistReviewRender, NgClass, NgIf],
+
+	directives: [NgIf, NgFor, ArtistReviewRender, NgClass, NgIf],
+
 	template: `
 	<div *ng-if="data" class="cyan">
 		<div class="container">
@@ -19,18 +21,12 @@ import { FavStore } from '../../stores/favStore';
 
 					<div class="col s2">
 						<h6 class="white-text">Reviews</h6>
-						<div class="switch">
-						<label class="white-text">
-							Off
-							<input (click)=switchControl('reviews') type="checkbox">
-							<span class="lever"></span> 
-							On
-							</label>
-						</div>
+						<switch-render (click)="switchControl('reviews')" />
 					</div>
 
 					<div class="col s2">
 						<h6 class="white-text">News</h6>
+
 							<div class="switch">
 								<label class="white-text">
 									Off
@@ -44,6 +40,8 @@ import { FavStore } from '../../stores/favStore';
 						<h6 class="white-text">Favourite</h6>
 							<i *ng-if="!isfavourite" class="material-icons white-text" (click)="addFavourite(data, !isFavourite)">star_rate</i>
 							<i *ng-if="isfavourite" class="material-icons yellow-text" (click)="removeFavourite(data, !isFavourite)">star_rate</i>
+						<switch-render (click)="switchControl('news')" />
+
 						</div>
 					</div>
 
@@ -112,8 +110,14 @@ export class ArtistRender {
 		this.favStore.addFavourite(artist.name, artist.id);
 	}
 
+
 	removeFavourite(data, newState) {
 		this.favStore.deleteFavourite(data.name);
+	}
+
+
+	alertMe() {
+		console.log('alert');
 	}
 
 }
