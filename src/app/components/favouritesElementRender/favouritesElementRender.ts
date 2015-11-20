@@ -2,7 +2,7 @@ import {Component, View, Input, NgFor} from 'angular2/angular2';
 import { RouterLink, RouteParams } from 'angular2/router';
 
 @Component({
-	selector: 'hotttlist-element',
+	selector: 'favourites-element',
 })
 
 @View({
@@ -18,7 +18,7 @@ import { RouterLink, RouteParams } from 'angular2/router';
 	`
 })
 
-export class HotttlistElementRender {
+export class FavouritesElementRender {
 	@Input() artists: any;
 	@Input() title: string;
 

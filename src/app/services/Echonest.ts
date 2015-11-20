@@ -1,5 +1,5 @@
 import { Injectable } from 'angular2/angular2';
-import {Http} from 'angular2/http';
+import { Http } from 'angular2/http';
 
 @Injectable()
 export class Echonest {
@@ -37,7 +37,7 @@ export class Echonest {
 	        let endpoint = 'artist/suggest?';
 	        let url = this.url + endpoint + '&api_key=' + this.apiKey + '&results=6' + '&name=' + name + '&format=' + this.format;
 	        return this.http.get(url)
-	            .map(function (res) { return res.json(); });
+	            .map(res => res.json());
 	}
 
 	getArtistBio (name) {

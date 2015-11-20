@@ -100,7 +100,7 @@ module.exports = {
       'pipes' : 'src/app/pipes',
       'components': 'src/app/components',
       'services': 'src/app/services',
-      // 'stores': 'src/app/stores'
+      'stores': 'src/app/stores'
     }
   },
 

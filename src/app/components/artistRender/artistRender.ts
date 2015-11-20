@@ -1,13 +1,15 @@
-import { Component, View, Input, NgIf, NgFor } from 'angular2/angular2';
+import { Component, View, Input, NgIf, NgFor, NgClass } from 'angular2/angular2';
 import { ArtistReviewRender } from '../artistReviewRender/artistReviewRender';
+import { FavStore } from '../../stores/favStore';
 import { Switch } from '../switchRender/switch';
+
 
 @Component({
 	selector: 'artist-render',
 })
 
 @View({
-	directives: [NgIf, NgFor, ArtistReviewRender, Switch],
+	directives: [NgIf, NgFor, ArtistReviewRender, Switch, NgIf],
 	template: `
 	<div *ng-if="data" class="cyan">
 		<div class="container">
@@ -18,15 +20,51 @@ import { Switch } from '../switchRender/switch';
 					</div>
 
 					<div class="col s2">
+					<div class="switch">
 						<h6 class="white-text">Reviews</h6>
+
+						<label class="white-text">
+									Off
+									<input (click)=switchControl('reviews') type="checkbox">
+									<span class="lever"></span>
+									On
+							</label>
+					</div>
+
 						<switch-render (click)="switchControl('reviews')" />
+
 					</div>
 
 					<div class="col s2">
 						<h6 class="white-text">News</h6>
+
+
+							<div class="switch">
+								<label class="white-text">
+									Off
+									<input (click)=switchControl('news') type="checkbox">
+									<span class="lever"></span>
+									On
+								</label>
+							</div>
+					</div>
+					<div class="col s2">
+						<h6 class="white-text">Favourite</h6>
+							<i *ng-if="!isfavourite" class="material-icons white-text" (click)="addFavourite(data, !isFavourite)">star_rate</i>
+							<i *ng-if="isfavourite" class="material-icons yellow-text" (click)="removeFavourite(data, !isFavourite)">star_rate</i>
 						<switch-render (click)="switchControl('news')" />
+
+
+						<switch-render (click)="switchControl('news')" />
+
 						</div>
 					</div>
+
+
+
+
+					</div>
+
 
 			</div>
 		</div>
@@ -72,8 +110,29 @@ import { Switch } from '../switchRender/switch';
 export class ArtistRender {
 	@Input() data: Object;
 	@Input() bio: Object;
+	@Input() isfavourite: boolean = true;
+	favStore: FavStore;
+
+	constructor(favStore: FavStore) {
+		this.favStore = favStore;
+	}
 
 	switchControl(value) {
-	        this[value] = event.target['checked'];
+	    this[value] = event.target['checked'];
 	}
+
+	addFavourite(artist, newState) {
+		this.favStore.addFavourite(artist.name, artist.id);
+	}
+
+
+	removeFavourite(data, newState) {
+		this.favStore.deleteFavourite(data.name);
+	}
+
+
+	alertMe() {
+		console.log('alert');
+	}
+
 }

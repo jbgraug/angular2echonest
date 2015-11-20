@@ -7,6 +7,7 @@ import {bootstrap, FORM_PROVIDERS, ELEMENT_PROBE_PROVIDERS} from 'angular2/angul
 import {ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {Echonest} from './services/Echonest';
+import {FavStore} from './stores/favStore';
 
 /*
  * App Component
@@ -19,10 +20,11 @@ import {Main} from './app';
  * our Services and Providers into Angular's dependency injection
  */
 bootstrap(Main, [
-  // These are dependencies of our App
-  FORM_PROVIDERS,
-  ROUTER_PROVIDERS,
-  HTTP_PROVIDERS,
-  ELEMENT_PROBE_PROVIDERS,
-  Echonest
+	// These are dependencies of our App
+	FORM_PROVIDERS,
+	ROUTER_PROVIDERS,
+	HTTP_PROVIDERS,
+	ELEMENT_PROBE_PROVIDERS,
+	Echonest,
+	FavStore
 ]);
