@@ -20,8 +20,15 @@ import { FavStore } from '../../stores/favStore';
 					</div>
 
 					<div class="col s2">
+					<div class="switch">
 						<h6 class="white-text">Reviews</h6>
-						<switch-render (click)="switchControl('reviews')" />
+						<label class="white-text">
+									Off
+									<input (click)=switchControl('reviews') type="checkbox">
+									<span class="lever"></span>
+									On
+							</label>
+					</div>
 					</div>
 
 					<div class="col s2">
