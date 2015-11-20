@@ -76,8 +76,4 @@ export class ArtistRender {
 	switchControl(value) {
 	        this[value] = event.target['checked'];
 	}
-
-	alertMe() {
-		console.log('alert');
-	}
 }
