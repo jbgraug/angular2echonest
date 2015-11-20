@@ -22,9 +22,4 @@ export class FavouritesElementRender {
 	@Input() artists: any;
 	@Input() title: string;
 
-	onChange() {
-		console.log('ok');
-	}
-
-
 }

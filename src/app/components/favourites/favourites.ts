@@ -33,8 +33,8 @@ export class Favourites {
 	}
 
 	onInit() {
-		this.favStore.favourites.subscribe(data => this.newFavourites = data[0].name);
 		this.favStore.favourites.subscribe(data => this.favouriteArtists = data);
+		this.favStore.toggleViewed();
 	}
 
 }

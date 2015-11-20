@@ -2,6 +2,7 @@ import { Component, View, Output } from 'angular2/angular2';
 import { RouteParams } from 'angular2/router';
 import { Echonest } from '../../services/Echonest';
 import { ArtistRender } from '../artistRender/artistRender';
+import { FavStore } from '../../stores/favStore';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { ArtistRender } from '../artistRender/artistRender';
 @View({
 	directives: [ArtistRender],
 	template: `
-	<artist-render [data]="artistData" [bio]="artistBio"></artist-render>
+	<artist-render [data]="artistData" [bio]="artistBio" [isfavourite]=isFavourite></artist-render>
 
 	`
 })
@@ -19,13 +20,16 @@ import { ArtistRender } from '../artistRender/artistRender';
 export class Artist {
 	service: Echonest;
 	routeParam: RouteParams;
+	favStore: FavStore;
 	artistData: Object;
+	isFavourite: boolean;
 	artistName: string;
 	artistBio: Object;
 
-	constructor(service: Echonest, routeParams: RouteParams) {
+	constructor(service: Echonest, routeParams: RouteParams, favStore: FavStore) {
 		this.service = service;
 		this.artistName = routeParams.get('name');
+		this.favStore = favStore;
 	}
 
 	setData(data) {
@@ -33,6 +37,8 @@ export class Artist {
 	}
 
 	onInit() {
+		console.log(this.artistName);
+
 		this.service.getArtistData(this.artistName)
 		.subscribe((data) => {
 			this.setData(data.response.artist);
@@ -43,7 +49,13 @@ export class Artist {
 			this.artistBio = data['0']
 		})
 
-	}
+		this.favStore.favourites
+			.subscribe(data => {
+				data.find((artist) => {
+					return this.isFavourite = artist.name === unescape(this.artistName);
+				})
+			})
 
+	}
 
 }

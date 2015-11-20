@@ -42,8 +42,8 @@ import { FavStore } from '../../stores/favStore';
 					</div>
 					<div class="col s2">
 						<h6 class="white-text">Favourite</h6>
-							<i *ng-if="!isFavourite" class="material-icons white-text" [ng-class]="{active: isFavourite, inactive: !isFavourite}" (click)="addFavourite(data, !isFavourite)">star_rate</i>
-							<i *ng-if="isFavourite" class="material-icons yellow-text" (click)="removeFavourite(data, !isFavourite)">star_rate</i>
+							<i *ng-if="!isfavourite" class="material-icons white-text" (click)="addFavourite(data, !isFavourite)">star_rate</i>
+							<i *ng-if="isfavourite" class="material-icons yellow-text" (click)="removeFavourite(data, !isFavourite)">star_rate</i>
 						</div>
 					</div>
 
@@ -97,13 +97,12 @@ import { FavStore } from '../../stores/favStore';
 export class ArtistRender {
 	@Input() data: Object;
 	@Input() bio: Object;
-	isFavourite: boolean = false;
+	@Input() isfavourite: boolean = true;
 	favStore: FavStore;
 
 	constructor(favStore: FavStore) {
 		this.favStore = favStore;
 	}
-
 
 	switchControl(value) {
 	    this[value] = event.target['checked'];
@@ -111,11 +110,10 @@ export class ArtistRender {
 
 	addFavourite(artist, newState) {
 		this.favStore.addFavourite(artist.name, artist.id);
-		this.isFavourite = newState;
 	}
 
 	removeFavourite(data, newState) {
 		this.favStore.deleteFavourite(data.name);
-		this.isFavourite = newState;
 	}
+
 }

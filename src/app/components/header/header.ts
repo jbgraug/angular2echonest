@@ -14,7 +14,7 @@ import { FavStore } from '../../stores/favStore';
 			<div class="nav-wrapper container">
 				<a href="#" class="brand-logo">{{title}}</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a [router-link]="['/Favourites']">My favourites <span *ng-if="newFavourites" class="new badge pink">{{newFavourites}}</span></a></li>
+					<li><a [router-link]="['/Favourites']">My favourites <span *ng-if="newFavourites && newFavourites.length > 0" class="new badge pink">{{newFavourites.length}}</span></a></li>
 					<li><a [router-link]="['/Search']">Search an artist</a></li>
 				</ul>
 			</div>
@@ -26,7 +26,7 @@ import { FavStore } from '../../stores/favStore';
 export class Header {
 	title: string;
 	favStore: FavStore;
-	newFavourites: Number;
+	newFavourites: any;
 
 	constructor(favStore: FavStore) {
 		this.title = 'Angular 2 & Echonest API';
@@ -34,8 +34,13 @@ export class Header {
 	}
 
 	onInit() {
-        this.favStore.favourites.subscribe(data => this.newFavourites = data.length);
-		console.log(this.favStore.favourites);
+		let artists;
+        this.favStore.favourites
+			.subscribe(data =>
+				this.newFavourites = data.filter((artist) => {
+					return artist.isNew === true
+				}
+				));
 	}
 
 
