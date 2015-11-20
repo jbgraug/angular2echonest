@@ -1,15 +1,15 @@
 import { Component, View, Input, NgIf, NgFor, NgClass } from 'angular2/angular2';
 import { ArtistReviewRender } from '../artistReviewRender/artistReviewRender';
 import { FavStore } from '../../stores/favStore';
+import { Switch } from '../switchRender/switch';
+
 
 @Component({
 	selector: 'artist-render',
 })
 
 @View({
-
-	directives: [NgIf, NgFor, ArtistReviewRender, NgClass, NgIf],
-
+	directives: [NgIf, NgFor, ArtistReviewRender, Switch, NgIf],
 	template: `
 	<div *ng-if="data" class="cyan">
 		<div class="container">
@@ -22,6 +22,7 @@ import { FavStore } from '../../stores/favStore';
 					<div class="col s2">
 					<div class="switch">
 						<h6 class="white-text">Reviews</h6>
+
 						<label class="white-text">
 									Off
 									<input (click)=switchControl('reviews') type="checkbox">
@@ -29,10 +30,14 @@ import { FavStore } from '../../stores/favStore';
 									On
 							</label>
 					</div>
+
+						<switch-render (click)="switchControl('reviews')" />
+
 					</div>
 
 					<div class="col s2">
 						<h6 class="white-text">News</h6>
+
 
 							<div class="switch">
 								<label class="white-text">
@@ -47,6 +52,9 @@ import { FavStore } from '../../stores/favStore';
 						<h6 class="white-text">Favourite</h6>
 							<i *ng-if="!isfavourite" class="material-icons white-text" (click)="addFavourite(data, !isFavourite)">star_rate</i>
 							<i *ng-if="isfavourite" class="material-icons yellow-text" (click)="removeFavourite(data, !isFavourite)">star_rate</i>
+						<switch-render (click)="switchControl('news')" />
+
+
 						<switch-render (click)="switchControl('news')" />
 
 						</div>
