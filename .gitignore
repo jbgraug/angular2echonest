@@ -1,3 +1,5 @@
+# @AngularClass
+
 # Logs
 logs
 *.log
@@ -38,6 +40,9 @@ Thumbs.db
 /tsd_typings/
 
 # Dist #
+
+__build__/**
+.webpack.json
 
 #doc
 /doc
