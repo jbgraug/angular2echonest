@@ -21,11 +21,3 @@ Since Angular 2 is still in alpha, the documentation is scarce and/or incomplete
 - Holding the app state in a Reactive store
 
 There isn't a styleguide that carry nearly-authoritative weight right now (As there was John Papa's for Angular 1), but this sample tries to follow some concepts I picked from using React/redux, where smart components do the heavy lifting and pass the data to their dumb childs.
-
-Since it's a two-days, coding in front of the champion's league at night-project, there's more than certainly room for improvements. This sample doesn't provide examples of child-parent communication, and I could have pushed the componentization further.
-
-##Todo
-- ~~Write an article, publish it to Medium, be famous~~
-
-https://medium.com/@marcosloic/writing-a-basic-application-with-angular-2-5811cf6d6bb
-- Refactor into components
