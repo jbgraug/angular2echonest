@@ -22,16 +22,8 @@ import { Switch } from '../switchRender/switch';
 					<div class="col s2">
 					<div class="switch">
 						<h6 class="white-text">Reviews</h6>
-
-						<label class="white-text">
-									Off
-									<input (click)=switchControl('reviews') type="checkbox">
-									<span class="lever"></span>
-									On
-							</label>
-					</div>
-
 						<switch-render (click)="switchControl('reviews')" />
+					</div>
 
 					</div>
 
@@ -40,23 +32,13 @@ import { Switch } from '../switchRender/switch';
 
 
 							<div class="switch">
-								<label class="white-text">
-									Off
-									<input (click)=switchControl('news') type="checkbox">
-									<span class="lever"></span>
-									On
-								</label>
+							<switch-render (click)="switchControl('news')" />
 							</div>
 					</div>
 					<div class="col s2">
 						<h6 class="white-text">Favourite</h6>
 							<i *ng-if="!isfavourite" class="material-icons white-text" (click)="addFavourite(data, !isFavourite)">star_rate</i>
 							<i *ng-if="isfavourite" class="material-icons yellow-text" (click)="removeFavourite(data, !isFavourite)">star_rate</i>
-						<switch-render (click)="switchControl('news')" />
-
-
-						<switch-render (click)="switchControl('news')" />
-
 						</div>
 					</div>
 
@@ -130,9 +112,5 @@ export class ArtistRender {
 		this.favStore.deleteFavourite(data.name);
 	}
 
-
-	alertMe() {
-		console.log('alert');
-	}
 
 }

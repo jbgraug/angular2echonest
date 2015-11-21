@@ -30,7 +30,6 @@ export class FavStore {
 
 		this.deleteFav
 			.map((artist) => {
-				console.log(artist)
 				return (state) => {
 					return state.filter((artists) => {
 						return artists.name !== artist;

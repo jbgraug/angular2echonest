@@ -12,7 +12,7 @@ import { FavStore } from '../../stores/favStore';
 	<header id="header" class="page-topbar">
 		<nav class="cyan">
 			<div class="nav-wrapper container">
-				<a href="#" class="brand-logo">{{title}}</a>
+				<a [router-link]="['/Home']" class="brand-logo">{{title}}</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a [router-link]="['/Favourites']">My favourites <span *ng-if="newFavourites && newFavourites.length > 0" class="new badge pink">{{newFavourites.length}}</span></a></li>
 					<li><a [router-link]="['/Search']">Search an artist</a></li>

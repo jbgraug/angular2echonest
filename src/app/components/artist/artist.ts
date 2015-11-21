@@ -12,7 +12,7 @@ import { FavStore } from '../../stores/favStore';
 @View({
 	directives: [ArtistRender],
 	template: `
-	<artist-render [data]="artistData" [bio]="artistBio" [isfavourite]=isFavourite></artist-render>
+	<artist-render [data]="artistData" [bio]="artistBio" [isfavourite]="isFavourite"></artist-render>
 
 	`
 })
@@ -37,7 +37,7 @@ export class Artist {
 	}
 
 	onInit() {
-		console.log(this.artistName);
+
 
 		this.service.getArtistData(this.artistName)
 		.subscribe((data) => {
@@ -51,8 +51,8 @@ export class Artist {
 
 		this.favStore.favourites
 			.subscribe(data => {
-				data.find((artist) => {
-					return this.isFavourite = artist.name === unescape(this.artistName);
+				this.isFavourite = data.find((artist) => {
+					return artist.name === decodeURI(this.artistName);
 				})
 			})
 
