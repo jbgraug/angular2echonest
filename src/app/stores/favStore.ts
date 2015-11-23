@@ -6,7 +6,7 @@ let initialState: any[] = [];
 @Injectable()
 export class FavStore {
 
-	favourites: Rx.ReplaySubject<any[]> = new Rx.ReplaySubject<any>(-1);
+	favourites: Rx.ReplaySubject<any[]> = new Rx.ReplaySubject(1);
 	updates: Rx.Subject<any> = new Rx.Subject<any>();
 	addFav: Rx.Subject<any> = new Rx.Subject<any>();
 	deleteFav: Rx.Subject<any> = new Rx.Subject<any>();

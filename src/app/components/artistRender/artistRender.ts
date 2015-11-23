@@ -1,4 +1,4 @@
-import { Component, View, Input, NgIf, NgFor, NgClass } from 'angular2/angular2';
+import { Component, View, Input, NgIf, NgFor, NgClass, ChangeDetectionStrategy } from 'angular2/angular2';
 import { ArtistReviewRender } from '../artistReviewRender/artistReviewRender';
 import { FavStore } from '../../stores/favStore';
 import { Switch } from '../switchRender/switch';
@@ -6,6 +6,7 @@ import { Switch } from '../switchRender/switch';
 
 @Component({
 	selector: 'artist-render',
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 @View({

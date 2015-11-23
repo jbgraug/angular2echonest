@@ -31,7 +31,7 @@ export class Hotttlist {
 
 	onInit() {
 		this.echonest.topHot()
-			.subscribe(data => this.setArtists(data.response.artists))
+			.subscribe(data => this.setArtists(data['response']['artists']))
 	}
 
 	

@@ -1,9 +1,10 @@
-import {Component, View, Input} from 'angular2/angular2';
+import {Component, View, Input, ChangeDetectionStrategy} from 'angular2/angular2';
 import { RouterLink } from 'angular2/router';
 
 
 @Component({
 	selector: 'artist-card',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 @View({
@@ -22,9 +23,5 @@ import { RouterLink } from 'angular2/router';
 
 export class ArtistCardRender {
 	@Input() artist: Object;
-
-	constructor() {
-
-	}
 
 }

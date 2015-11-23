@@ -34,7 +34,6 @@ export class Header {
 	}
 
 	onInit() {
-		let artists;
         this.favStore.favourites
 			.subscribe(data =>
 				this.newFavourites = data.filter((artist) => {

@@ -2,6 +2,7 @@ import {Component, View, NgIf, NgFor} from 'angular2/angular2';
 import { RouterLink } from 'angular2/router';
 import { Echonest } from '../../services/Echonest';
 import {ArtistCardRender} from '../artistCardRender/artistCardRender';
+import * as Rx from '@reactivex/rxjs';
 
 @Component({
 	selector: 'search',
@@ -44,7 +45,7 @@ export class Search {
 		setTimeout(() => {
 			this.service.artistSearch(name)
 			.subscribe((data) => {
-				this.artists = data.response.artists;
+				this.artists = data['response']['artists'];
 			});
 		}, 400);
 

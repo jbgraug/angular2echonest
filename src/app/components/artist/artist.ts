@@ -41,7 +41,7 @@ export class Artist {
 
 		this.service.getArtistData(this.artistName)
 		.subscribe((data) => {
-			this.setData(data.response.artist);
+			this.setData(data['response']['artist']);
 		})
 
 		this.service.getArtistBio(this.artistName)

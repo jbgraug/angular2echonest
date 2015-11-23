@@ -1,8 +1,9 @@
-import {Component, View, Input, NgFor} from 'angular2/angular2';
+import {Component, View, Input, NgFor, ChangeDetectionStrategy} from 'angular2/angular2';
 import { RouterLink, RouteParams } from 'angular2/router';
 
 @Component({
 	selector: 'favourites-element',
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 @View({
