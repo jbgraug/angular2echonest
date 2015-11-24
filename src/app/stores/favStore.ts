@@ -21,7 +21,7 @@ export class FavStore {
 				.subscribe(this.favourites);
 
 		this.addFav
-			.map(function(artist) {
+			.map((artist) => {
 				return (state) => {
 					return state.concat(artist);
 				}
