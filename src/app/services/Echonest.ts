@@ -7,15 +7,12 @@ export class Echonest {
 	apiKey: string;
 	format: string;
 
-
-
 	constructor(public http: Http) {
 		this.url = 'http://developer.echonest.com/api/v4/';
 		this.apiKey = 'AAXIWZI0HTK1NYTWQ';
 		this.format = 'json';
 
 	}
-
 
 	topHot() {
 		let endpoint = 'artist/top_hottt?';
@@ -46,9 +43,5 @@ export class Echonest {
 				.map((res:Response) => res.json())
 				.map(res => res['response']['biographies']);
 	}
-
-
-
-
 }
 

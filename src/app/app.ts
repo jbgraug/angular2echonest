@@ -16,6 +16,7 @@ import {Header} from './components/header/header';
 import {Artist} from './components/artist/artist';
 import {Search} from './components/search/search';
 import {Favourites} from './components/favourites/favourites';
+import { FavStore } from './stores/favStore';
 
 
 
@@ -28,7 +29,7 @@ import {Favourites} from './components/favourites/favourites';
 @View({
   directives: [Header, RouterOutlet],
     template: `
-    <header></header>
+    <header [newfavourites]="newfavourites"></header>
     <router-outlet></router-outlet>
   `
 })
@@ -44,5 +45,20 @@ import {Favourites} from './components/favourites/favourites';
 ])
 
 export class Main {
+	favStore: FavStore;
+	newfavourites: any;
+
+	constructor(favStore: FavStore) {
+		this.favStore = favStore;
+	}
+
+	onInit() {
+        this.favStore.favourites
+			.subscribe(data =>
+				this.newfavourites = data.filter((artist) => {
+					return artist.isNew === true
+				}
+				));
+	}
 
 }

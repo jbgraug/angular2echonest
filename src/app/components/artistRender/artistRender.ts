@@ -113,5 +113,9 @@ export class ArtistRender {
 		this.favStore.deleteFavourite(data.name);
 	}
 
+	onChange() {
+		console.log('ok');
+	}
+
 
 }
