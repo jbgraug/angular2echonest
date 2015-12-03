@@ -10,11 +10,8 @@ import * as Rx from '@reactivex/rxjs';
 
 export class Autosearch {
   results: EventEmitter<Object[]> = new EventEmitter();
-  service: Echonest;
 
-
-  constructor(private elementRef: ElementRef, service: Echonest) {
-    this.service = service;
+  constructor(private elementRef: ElementRef, private service: Echonest) {
   }
 
   onInit() {

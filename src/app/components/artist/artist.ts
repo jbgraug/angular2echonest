@@ -18,18 +18,14 @@ import { FavStore } from '../../stores/favStore';
 })
 
 export class Artist {
-	service: Echonest;
 	routeParam: RouteParams;
-	favStore: FavStore;
 	artistData: Object;
 	isFavourite: boolean;
 	artistName: string;
 	artistBio: Object;
 
-	constructor(service: Echonest, routeParams: RouteParams, favStore: FavStore) {
-		this.service = service;
+	constructor(private service: Echonest, routeParams: RouteParams, private favStore: FavStore) {
 		this.artistName = routeParams.get('name');
-		this.favStore = favStore;
 	}
 
 	setData(data) {

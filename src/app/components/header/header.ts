@@ -28,7 +28,7 @@ export class Header {
 	title: string;
 	@Input() newfavourites: Observable<Object[]>;
 
-	constructor(favStore: FavStore) {
+	constructor() {
 		this.title = 'Angular 2 & Echonest API';
 	}
 }

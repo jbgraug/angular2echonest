@@ -94,10 +94,8 @@ export class ArtistRender {
 	@Input() data: Object;
 	@Input() bio: Object;
 	@Input() isfavourite: boolean = true;
-	favStore: FavStore;
 
-	constructor(favStore: FavStore) {
-		this.favStore = favStore;
+	constructor(private favStore: FavStore) {
 	}
 
 	switchControl(value) {
