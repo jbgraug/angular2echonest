@@ -45,11 +45,9 @@ import { FavStore } from './stores/favStore';
 ])
 
 export class Main {
-	favStore: FavStore;
 	newfavourites: any;
 
-	constructor(favStore: FavStore) {
-		this.favStore = favStore;
+	constructor(private favStore: FavStore) {
 	}
 
 	onInit() {

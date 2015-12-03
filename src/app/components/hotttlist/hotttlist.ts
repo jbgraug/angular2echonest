@@ -19,10 +19,8 @@ import { Echonest } from '../../services/Echonest';
 
 export class Hotttlist {
 	artists: Object;
-	echonest: Echonest;
 
-	constructor(Echonest: Echonest) {
-		this.echonest = Echonest;
+	constructor(private echonest: Echonest) {
 	}
 
 	setArtists(data) {

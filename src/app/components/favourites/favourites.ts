@@ -24,8 +24,7 @@ export class Favourites {
 	favouriteArtists: any[];
 	newFavourites: any;
 
-	constructor(public favStore: FavStore) {
-		this.favStore = favStore;
+	constructor(private favStore: FavStore) {
 	}
 
 	setArtists(data) {
