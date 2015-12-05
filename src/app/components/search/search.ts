@@ -15,7 +15,7 @@ import { Autosearch } from './searchDirective';
 		<div class="row">
 			<div class="card">
 				<div class="input-field col s12">
-					<input autosearch type="text" (results)="artists = $event">
+					<input type="text" autosearch (results)="artists = $event">
 					<label>Artist search</label>
 				</div>
 			</div>
@@ -34,17 +34,5 @@ import { Autosearch } from './searchDirective';
 })
 
 export class Search {
-
 	artists: Object[];
-
-	// artistSearch($event, name) {
-	// 	setTimeout(() => {
-	// 		this.service.artistSearch(name)
-	// 		.subscribe((data) => {
-	// 			this.artists = data['response']['artists'];
-	// 		});
-	// 	}, 400);
-
-	// }
-
 }
