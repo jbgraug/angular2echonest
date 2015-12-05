@@ -27,10 +27,6 @@ export class Favourites {
 	constructor(private favStore: FavStore) {
 	}
 
-	setArtists(data) {
-		this.favouriteArtists = data;
-	}
-
 	onInit() {
 		this.favStore.favourites.subscribe(data => this.favouriteArtists = data);
 		this.favStore.toggleViewed();

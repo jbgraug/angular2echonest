@@ -102,7 +102,7 @@ export class ArtistRender {
 	    this[value] = event.target['checked'];
 	}
 
-	addFavourite(artist, newState) {
+	addFavourite(artist) {
 		this.favStore.addFavourite(artist.name, artist.id);
 	}
 
