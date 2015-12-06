@@ -1,15 +1,12 @@
-import {Component, View, NgIf, NgFor} from 'angular2/angular2';
-import { RouterLink } from 'angular2/router';
+import {Component} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {ArtistCardRender} from '../artistCardRender/artistCardRender';
 import * as Rx from '@reactivex/rxjs';
 import { Autosearch } from './searchDirective';
 
 @Component({
 	selector: 'search',
-})
-
-@View({
-	directives: [NgIf, NgFor, RouterLink, ArtistCardRender, Autosearch],
+	directives: [ROUTER_DIRECTIVES, ArtistCardRender, Autosearch],
 	template: `
 	<div class="container">
 		<div class="row">

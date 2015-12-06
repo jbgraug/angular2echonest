@@ -1,11 +1,11 @@
-import { Directive, View, ElementRef, EventEmitter } from 'angular2/angular2';
+import { Directive, ElementRef, EventEmitter } from 'angular2/angular2';
 import { Echonest } from '../../services/Echonest';
 import * as Rx from '@reactivex/rxjs';
 
 
 @Directive({
   selector: 'input[type=text][autosearch]',
-  outputs: [ 'results' ],
+  outputs: [ 'results' ]
 })
 
 export class Autosearch {
@@ -14,7 +14,7 @@ export class Autosearch {
   constructor(private elementRef: ElementRef, private service: Echonest) {
   }
 
-  onInit() {
+  ngOnInit() {
     Rx.Observable.fromEvent(this.elementRef.nativeElement, 'keyup')
       .map(e => e['target'].value)
       .filter(text => text.length > 2)

@@ -1,12 +1,9 @@
-import { Component, View } from 'angular2/angular2';
+import { Component } from 'angular2/core';
 import { HotttlistElementRender } from '../hotttlistElementRender/hotttlistElementRender';
 import { Echonest } from '../../services/Echonest';
 
 @Component({
 	selector: 'hotttlist',
-})
-
-@View({
 	directives: [HotttlistElementRender],
 	template: `
 		<div class="container">
@@ -27,7 +24,7 @@ export class Hotttlist {
 		this.artists = data;
 	}
 
-	onInit() {
+	ngOnInit() {
 		this.echonest.topHot()
 			.subscribe(data => this.setArtists(data['response']['artists']))
 	}
