@@ -1,14 +1,11 @@
-import { Component, View, NgFor } from 'angular2/angular2';
-import { FavouritesElementRender } from '../favouritesElementRender/favouritesElementRender';
-import { FavStore } from '../../stores/favStore';
+import {Component} from 'angular2/core';
+import {FavouritesElementRender} from '../favouritesElementRender/favouritesElementRender';
+import {FavStore} from '../../stores/favStore';
 import * as Rx from "@reactivex/rxjs";
 
 @Component({
-	selector: 'favourites'
-})
-
-@View({
-	directives: [FavouritesElementRender, NgFor],
+	selector: 'favourites',
+	directives: [FavouritesElementRender],
 	template: `
 		<div class="container">
 			<div class="row">
@@ -16,7 +13,6 @@ import * as Rx from "@reactivex/rxjs";
 				<li *ng-for="#artist of favouriteArtists">{{newFavourites}}</li>
 			</div>
 		</div>
-
 	`
 })
 
@@ -27,7 +23,8 @@ export class Favourites {
 	constructor(private favStore: FavStore) {
 	}
 
-	onInit() {
+
+	ngOnInit() {
 		this.favStore.favourites.subscribe(data => this.favouriteArtists = data);
 		this.favStore.toggleViewed();
 	}

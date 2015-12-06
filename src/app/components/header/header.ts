@@ -1,14 +1,11 @@
-import {Component, View, NgIf, Observable, ChangeDetectionStrategy, Input} from 'angular2/angular2';
-import { RouterLink } from 'angular2/router';
-import { FavStore } from '../../stores/favStore';
+import {Component, Observable, ChangeDetectionStrategy, Input} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {FavStore} from '../../stores/favStore';
 
 @Component({
 	selector: 'header',
-	changeDetection: ChangeDetectionStrategy.OnPush
-})
-
-@View({
-	directives: [RouterLink, NgIf],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	directives: [ROUTER_DIRECTIVES],
 	template: `
 	<header id="header" class="page-topbar">
 		<nav class="cyan">

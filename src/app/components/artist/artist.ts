@@ -1,4 +1,4 @@
-import { Component, View, Output } from 'angular2/angular2';
+import { Component, Output } from 'angular2/core';
 import { RouteParams } from 'angular2/router';
 import { Echonest } from '../../services/Echonest';
 import { ArtistRender } from '../artistRender/artistRender';
@@ -7,13 +7,9 @@ import { FavStore } from '../../stores/favStore';
 
 @Component({
 	selector: 'artist',
-})
-
-@View({
 	directives: [ArtistRender],
 	template: `
 	<artist-render [data]="artistData" [bio]="artistBio" [isfavourite]="isFavourite"></artist-render>
-
 	`
 })
 
@@ -32,7 +28,7 @@ export class Artist {
 		this.artistData = data;
 	}
 
-	onInit() {
+	ngOnInit() {
 
 
 		this.service.getArtistData(this.artistName)

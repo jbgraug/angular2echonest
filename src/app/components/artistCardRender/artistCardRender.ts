@@ -1,14 +1,11 @@
-import {Component, View, Input, ChangeDetectionStrategy} from 'angular2/angular2';
-import { RouterLink } from 'angular2/router';
+import {Component, Input, ChangeDetectionStrategy} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 
 @Component({
 	selector: 'artist-card',
-    changeDetection: ChangeDetectionStrategy.OnPush
-})
-
-@View({
-	directives: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+	directives: [ROUTER_DIRECTIVES],
 	template: `
 				<div class="card">
 					<div class="card-content">
