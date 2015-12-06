@@ -1,12 +1,9 @@
-import {Component, View, Input, NgFor} from 'angular2/angular2';
-import { RouterLink, RouteParams } from 'angular2/router';
+import {Component, Input} from 'angular2/angular2';
+import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
 
 @Component({
 	selector: 'hotttlist-element',
-})
-
-@View({
-	directives: [NgFor, RouterLink],
+	directives: [ROUTER_DIRECTIVES],
 	template: 
 	`
 	<div class="z-depth-1">

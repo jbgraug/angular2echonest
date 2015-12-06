@@ -1,11 +1,8 @@
-import { Component, View, Attribute } from 'angular2/angular2';
+import {Component} from 'angular2/angular2';
 
 
 @Component({
 	selector: 'switch-render',
-})
-
-@View({
 	directives: [],
 	template: `
 	<div class="switch">
