@@ -1,5 +1,5 @@
 # angular2echonest
-Angular2 (Alpha 46) playground with Echonest API.
+Angular2 (Alpha 47) playground with Echonest API.
 
 Live example at http://angular2.loicmarcos.be
 
