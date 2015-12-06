@@ -4,7 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
 	selector: 'artist-card',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush,
 	directives: [ROUTER_DIRECTIVES],
 	template: `
 				<div class="card">

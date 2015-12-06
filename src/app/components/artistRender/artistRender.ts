@@ -91,7 +91,4 @@ export class ArtistRender {
     this.favStore.deleteFavourite(data.name);
   }
 
-  ngOnChanges() {
-    console.log('ok');
-  }
 }
