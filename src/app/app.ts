@@ -31,7 +31,7 @@ import {FavStore} from './stores/favStore';
 export class Main {
   newfavourites: any;
 
-  constructor(private favStore: FavStores) {
+  constructor(private favStore: FavStore) {
   }
 
   ngOnInit() {
