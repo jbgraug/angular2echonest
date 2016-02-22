@@ -32,6 +32,7 @@ export class Main {
   newfavourites: any;
 
   constructor(private favStore: FavStore) {
+  console.log('ok');
   }
 
   ngOnInit() {
