@@ -1,8 +1,6 @@
 # angular2echonest
 Angular2 (Alpha 47) playground with Echonest API.
 
-Live example at http://angular2.loicmarcos.be
-
 You may also want to have a look at the two complementary blog posts I wrote about this sample project, for a (nearly) step-by-step explanation.
 
 https://medium.com/@marcosloic/writing-a-basic-application-with-angular-2-5811cf6d6bb#.itnamrq49
